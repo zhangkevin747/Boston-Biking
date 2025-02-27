@@ -21,3 +21,19 @@ html, body {
     height: 100%;
     pointer-events: none;
   }
+
+  /* Slider styling */
+#timeSlider {
+  width: 200px; /* adjust as needed */
+}
+
+/* Style for the time element */
+#timeDisplay {
+  font-weight: bold;
+}
+
+/* Style for the em element */
+#anyTime {
+  font-style: italic;
+  color: #777;
+}

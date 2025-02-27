@@ -8,3 +8,101 @@ body {
     margin: auto;
     padding: 1em;
   }
+
+/* Add styles for circles in the SVG */
+svg circle {
+  --departure-ratio: 0.5; /* Default departure ratio */
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+  fill: var(--color);
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1;
+}
+
+
+header {
+  display: flex;
+  align-items: baseline;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Put the label (with slider) on the far right */
+header label {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Keep the slider reasonably sized */
+#timeSlider {
+  width: 150px;
+}
+
+/* Display time or “(any time)” inline with the slider */
+#timeDisplay,
+#anyTime {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+#anyTime {
+  color: #777;
+  font-style: italic;
+}
+
+/* Define default departure/arrival colors at a global or root level */
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+/* Both .legend > div and the circles will use the same custom properties */
+svg circle,
+.legend > div {
+  /* Provide a default ratio so the color-mix doesn’t fall back to black */
+  --departure-ratio: 0.5; 
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Circles on the map use var(--color) for fill */
+svg circle {
+  fill: var(--color);
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1;
+}
+
+/* Legend styling */
+.legend {
+  display: flex;
+  width: 100%;
+  gap: 1px;             /* small gap between blocks */
+  margin-block: .5rem;   /* vertical spacing above/below legend */
+}
+
+.legend > div {
+  flex: 1;              /* equally sized blocks */
+  background-color: var(--color);
+  color: #fff;          /* pick a text color with enough contrast */
+  text-align: center;
+  padding: 0.25rem 1rem;
+}
+
